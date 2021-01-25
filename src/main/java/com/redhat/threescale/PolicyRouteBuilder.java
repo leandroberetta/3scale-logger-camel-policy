@@ -9,7 +9,7 @@ public class PolicyRouteBuilder extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         from("netty4-http:proxy://0.0.0.0:8080")
-                .log("${headers.CamelHttpHost}")
+                .log("${headers.CamelHttpScheme}://${headers.CamelHttpHost}:${headers.CamelHttpPort}${headers.CamelHttpPath}")
                 .toD("netty4-http:"
                         + "${headers." + Exchange.HTTP_SCHEME + "}://"
                         + "${headers." + Exchange.HTTP_HOST + "}:"
